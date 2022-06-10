@@ -2,10 +2,13 @@
 # By @Shahmaan
 
 import turtle
+import tkinter
 
 # Window
 win = turtle.Screen()
 win.title("Pong by @Shahmaan")
+img = tkinter.Image("photo", file="icon-png.png")
+turtle._Screen._root.iconphoto(True, img)
 win.bgcolor("black")
 win.setup(width=800, height=600)
 win.tracer(0)
@@ -51,6 +54,14 @@ pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 16, "normal"))
 
+pen2 = turtle.Turtle()
+pen2.speed(0)
+pen2.color("white")
+pen2.penup()
+pen2.hideturtle()
+pen2.goto(0, -270)
+pen2.write("Press O to quit", align="center", font=("Courier", 8, "normal"))
+
 # Function
 def paddle_a_up():
     y = paddle_a.ycor()
@@ -72,6 +83,10 @@ def paddle_b_down():
     y -= 30
     paddle_b.sety(y)
 
+def quit():
+    global running
+    running = False
+
 # Keyboard binding
 win.listen()
 win.onkeypress(paddle_a_up, "w")
@@ -79,10 +94,12 @@ win.onkeypress(paddle_a_down, "s")
 
 win.onkeypress(paddle_b_up, "Up")
 win.onkeypress(paddle_b_down, "Down")
+win.onkeypress(quit, "o")
 
 
 # Main game loop
-while True:
+running = True
+while running:
     win.update()
 
     #Move the ball
@@ -135,3 +152,5 @@ while True:
 
     if paddle_a.ycor() < -250:
         paddle_a.sety(-250)
+
+    
