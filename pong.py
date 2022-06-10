@@ -7,8 +7,6 @@ import tkinter
 # Window
 win = turtle.Screen()
 win.title("Pong by @Shahmaan")
-img = tkinter.Image("photo", file="icon-png.png")
-turtle._Screen._root.iconphoto(True, img)
 win.bgcolor("black")
 win.setup(width=800, height=600)
 win.tracer(0)
